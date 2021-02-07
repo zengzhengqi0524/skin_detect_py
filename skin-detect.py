@@ -53,7 +53,7 @@ def hsv_detect(image):
     :param image: 图片路径
     :return: None
     """
-    img = imageq
+    img = image
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     (_h, _s, _v) = cv2.split(hsv)
     skin = np.zeros(_h.shape, dtype=np.uint8)
