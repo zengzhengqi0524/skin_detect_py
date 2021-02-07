@@ -14,7 +14,8 @@ def video_capture():
         # display the resulting frame
         # frame = hsv_detect(frame)
 
-        frame = cv2.resize(frame_origin, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)  # 比例因子：fx=0.5,fy=0.5
+        frame = cv2.resize(frame_origin, None, fx=0.5, fy=0.5,
+                           interpolation=cv2.INTER_CUBIC)  # 比例因子：fx=0.5,fy=0.5
 
         frame = ellipse_detect(frame)
         frame = img_blur(frame)
@@ -32,7 +33,8 @@ def video_capture():
 
 def ellipse_detect(img):
     skinCrCbHist = np.zeros((256, 256), dtype=np.uint8)
-    cv2.ellipse(skinCrCbHist, (113, 155), (23, 15), 43, 0, 360, (255, 255, 255), -1)
+    cv2.ellipse(skinCrCbHist, (113, 155), (23, 15),
+                43, 0, 360, (255, 255, 255), -1)
 
     YCRCB = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
     (y, cr, cb) = cv2.split(YCRCB)
@@ -76,7 +78,8 @@ def dilate_demo(image):
     # 灰度化
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # 二值化
-    ret, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    ret, binary = cv2.threshold(
+        gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     # 定义结构元素的形状和大小
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
     # 膨胀操作
@@ -89,7 +92,8 @@ def erode_demo(image):
     # 灰度化
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # 二值化
-    ret, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    ret, binary = cv2.threshold(
+        gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     # 定义结构元素的形状和大小
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
     # 腐蚀操作
